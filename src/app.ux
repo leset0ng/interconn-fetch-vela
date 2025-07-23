@@ -1,0 +1,8 @@
+<script>
+import Interconn from "./utils/handshake";
+import FetchClient from "./utils/interconnfetch";
+
+const interconn = new Interconn()
+globalThis.fetch = (...args) => interconn.register(FetchClient).fetch(...args)
+export default {}
+</script>

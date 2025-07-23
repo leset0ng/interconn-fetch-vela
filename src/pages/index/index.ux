@@ -1,0 +1,48 @@
+<template>
+  <div class="demo-page">
+    <text class="title">请求结果{{result}}</text>
+    <input class="btn" type="button" value="发起请求" onclick="fetchData" />
+  </div>
+</template>
+
+<script>
+const {fetch} = globalThis
+
+export default {
+  private: {
+    result: ""
+  },
+  async fetchData(){
+    try {
+      const res = await fetch("https://reqres.in/api/users/2")
+      this.result = await res.text()
+    } catch (error) {
+      this.result=error.message
+      console.log(error.stack)
+    }
+  }
+}
+</script>
+
+<style>
+.demo-page {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 20px;
+  text-align: center;
+}
+
+.btn {
+  width: 200px;
+  height: 40px;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: #09ba07;
+  font-size: 20px;
+  color: #ffffff;
+}
+</style>
